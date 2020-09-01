@@ -357,8 +357,8 @@ void ComputeORB(const cv::Mat &img, vector<cv::KeyPoint> &keypoints, vector<Desc
     for (int dx = -half_patch_size; dx < half_patch_size; ++dx) {
       for (int dy = -half_patch_size; dy < half_patch_size; ++dy) {
         uchar pixel = img.at<uchar>(kp.pt.y + dy, kp.pt.x + dx);
-        m01 += dx * pixel;
-        m10 += dy * pixel;
+        m10 += dx * pixel;
+        m01 += dy * pixel;
       }
     }
 
@@ -372,7 +372,7 @@ void ComputeORB(const cv::Mat &img, vector<cv::KeyPoint> &keypoints, vector<Desc
     for (int i = 0; i < 8; i++) {
       uint32_t d = 0;
       for (int k = 0; k < 32; k++) {
-        int idx_pq = i * 8 + k;
+        int idx_pq = i * 32 + k;
         cv::Point2f p(ORB_pattern[idx_pq * 4], ORB_pattern[idx_pq * 4 + 1]);
         cv::Point2f q(ORB_pattern[idx_pq * 4 + 2], ORB_pattern[idx_pq * 4 + 3]);
 
